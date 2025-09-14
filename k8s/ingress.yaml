@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-app
+  annotations:
+    kubernetes.io/ingress.class: "nginx"         # í´‘ add this
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - apps.srespace.tech
+    secretName: python-app-tls
+  rules:
+  - host: apps.srespace.tech
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: python-app
+            port:
+              number: 8080
+
