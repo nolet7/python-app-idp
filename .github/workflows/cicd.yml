@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write   # ✅ allow workflow to push commits back to the repo
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
